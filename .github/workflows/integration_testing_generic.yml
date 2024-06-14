@@ -12,8 +12,8 @@ permissions:
     contents: read
 
 jobs:
-  integration-tests-dev:
-    name: Run Integration Tests dev
+  integration-tests:
+    name: Run Integration Tests
     runs-on: ubuntu-latest
     environment: ${{ inputs.gh_environment }}
     env:
@@ -22,4 +22,5 @@ jobs:
     steps:
     - name: Print environment variables
       run: |
-        echo "Environment: ${{ vars.ENV }}"
+        echo "vars Environment: ${{ vars.ENV }}"
+        echo "GH Environment: ${{ inputs.gh_environment }}"
