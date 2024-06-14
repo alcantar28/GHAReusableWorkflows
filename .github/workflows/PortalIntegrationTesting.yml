@@ -14,12 +14,14 @@ jobs:
       environment: dev
 
   integration-tests-stage:
+    needs: integration-tests-dev
     name: Run Integration Tests STAGE
     uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@main
     with:
       environment: stage
 
   integration-tests-prod:
+    needs: integration-tests-stage
     name: Run Integration Tests PROD
     uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@main
     with:
