@@ -1,9 +1,6 @@
 name: Portal Integration Testing
 on:
-  push:
-    branches:
-      - main
-      - AM-1
+  workflow_dispatch 
     
 permissions:
     id-token: write
