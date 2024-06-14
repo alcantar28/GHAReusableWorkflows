@@ -10,10 +10,18 @@ permissions:
     contents: read
 
 jobs:
+  prerequisites:
+    name: Prerequisites
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup env var
+      run: |
+        echo MESSAGE_SHA='alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@'${{ github.ref_name }} >> $GITHUB_ENV
+  
   integration-tests-dev:
     name: Run Integration Tests DEV
     if: github.ref != 'refs/heads/main'
-    uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@AM-1
+    uses: ${{ env.MESSAGE_SHA }}
     with:
       environment: dev
 
