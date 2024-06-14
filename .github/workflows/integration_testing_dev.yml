@@ -9,10 +9,24 @@ permissions:
     contents: read
 
 jobs:
-  integration-tests:
-    name: Run Integration Tests
+  integration-tests-dev:
+    if: github.ref == 'refs/heads/develop'
+    name: Run Integration Tests dev
     runs-on: ubuntu-latest
-    environment: production
+    environment: dev
+    env:
+      ENV: ${{ vars.ENV }}
+
+    steps:
+    - name: Print environment variables
+      run: |
+        echo "Environment: ${{ vars.ENV }}"
+
+  integration-tests-prod:
+    if: github.ref == 'refs/heads/main'
+    name: Run Integration Tests prod
+    runs-on: ubuntu-latest
+    environment: prod
     env:
       ENV: ${{ vars.ENV }}
 
