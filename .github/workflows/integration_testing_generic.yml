@@ -6,7 +6,6 @@ on:
         description: 'Specifies the GitHub deployment environment.'
         required: true
         type: string
-        default: dev
 permissions:
     id-token: write
     contents: read
@@ -24,3 +23,4 @@ jobs:
       run: |
         echo "vars Environment: ${{ vars.ENV }}"
         echo "GH Environment: ${{ inputs.environment }}"
+        echo "github.ref: ${{ github.ref }}"
