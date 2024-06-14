@@ -1,0 +1,25 @@
+name: Portal Integration Testing - Generic
+on:
+  workflow_call:
+    inputs:
+      environment:
+        description: 'Specifies the GitHub deployment environment.'
+        required: true
+        type: string
+        default: dev
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+  integration-tests-dev:
+    name: Run Integration Tests dev
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.gh_environment }}
+    env:
+      ENV: ${{ vars.ENV }}
+
+    steps:
+    - name: Print environment variables
+      run: |
+        echo "Environment: ${{ vars.ENV }}"
