@@ -15,7 +15,7 @@ jobs:
   integration-tests:
     name: Run Integration Tests
     runs-on: ubuntu-latest
-    environment: ${{ inputs.gh_environment }}
+    environment: ${{ inputs.environment }}
     env:
       ENV: ${{ vars.ENV }}
 
@@ -23,4 +23,4 @@ jobs:
     - name: Print environment variables
       run: |
         echo "vars Environment: ${{ vars.ENV }}"
-        echo "GH Environment: ${{ inputs.gh_environment }}"
+        echo "GH Environment: ${{ inputs.environment }}"
