@@ -12,7 +12,9 @@ jobs:
   integration-tests:
     name: Run Integration Tests
     runs-on: ubuntu-latest
-    environment: ${{ vars.ENV }}
+    environment: stage
+    env:
+      ENV: ${{ vars.ENV }}
 
     steps:
     - name: Print environment variables
