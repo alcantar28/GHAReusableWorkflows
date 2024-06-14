@@ -23,4 +23,4 @@ jobs:
       run: |
         echo "vars Environment: ${{ vars.ENV }}"
         echo "GH Environment: ${{ inputs.environment }}"
-        echo "github.ref: ${{ github.ref }}"
+        echo "github.ref: ${{ github.ref_name }}"
