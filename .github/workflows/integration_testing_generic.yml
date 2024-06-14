@@ -19,8 +19,13 @@ jobs:
       ENV: ${{ vars.ENV }}
 
     steps:
+    - name: Setup env var
+      run: |
+        echo MESSAGE_SHA='${{ github.event.head_commit.message }}'-'${{ github.sha }}' >> $GITHUB_ENV
+    
     - name: Print environment variables
       run: |
         echo "vars Environment: ${{ vars.ENV }}"
         echo "GH Environment: ${{ inputs.environment }}"
-        echo "github.ref: ${{ github.ref_name }}"
+        echo "github.ref_name: ${{ github.ref_name }}"
+        echo "message sha: ${{ env.MESSAGE_SHA }}"
