@@ -13,7 +13,7 @@ jobs:
   integration-tests-dev:
     name: Run Integration Tests DEV
     if: github.ref != 'refs/heads/main'
-    uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@${{github.ref}}
+    uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@$GITHUB_REF
     with:
       environment: dev
 
