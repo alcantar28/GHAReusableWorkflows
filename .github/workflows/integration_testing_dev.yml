@@ -2,7 +2,8 @@ name: Portal Integration Testing - DEV
 on:
   push:
     branches:
-      - main        
+      - main
+      - AM-1
     
 permissions:
     id-token: write
