@@ -15,11 +15,11 @@ jobs:
     if: github.ref != 'refs/heads/main'
     uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@AM-1
     with:
-      gh_environment: dev
+      environment: dev
 
   integration-tests-prod:
     name: Run Integration Tests PROD
     if: github.ref == 'refs/heads/main'
     uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@main
     with:
-      gh_environment: prod
+      environment: prod
