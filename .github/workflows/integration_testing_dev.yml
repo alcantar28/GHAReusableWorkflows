@@ -1,0 +1,32 @@
+name: Portal Integration Testing - DEV
+on:
+  # pull_request:
+  #   paths:
+  #     - 'test/cypress-ui-test-automation/**'
+  #     - 'test/api-jest-supertest/**'
+  workflow_call:
+    inputs:
+      base_url:
+        description: 'Base url of the Assessment Management application.'
+        required: true
+        type: string
+        
+env:
+    AWS_REGION : ${{ vars.AWS_REGION }}
+    NODE_VERSION: "20.10.0"
+    BUILD_DIR : ./test
+    
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+  integration-tests:
+    name: Run Integration Tests
+    runs-on: ubuntu-latest
+    environment: ${{ vars.ENV || 'dev' }}
+
+    steps:
+    - name: Print environment variables
+      run: |
+        echo "Environment: ${{ vars.ENV }}"
