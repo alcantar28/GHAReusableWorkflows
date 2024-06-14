@@ -1,33 +1,26 @@
 name: Portal Integration Testing
 on:
   push:
-    branches:
-      - main
-      - AM-1
     
 permissions:
     id-token: write
     contents: read
 
 jobs:
-  prerequisites:
-    name: Prerequisites
-    runs-on: ubuntu-latest
-    steps:
-    - name: Setup env var
-      run: |
-        echo MESSAGE_SHA='alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@'${{ github.ref_name }} >> $GITHUB_ENV
-  
   integration-tests-dev:
     name: Run Integration Tests DEV
-    if: github.ref != 'refs/heads/main'
-    uses: ${{ env.MESSAGE_SHA }}
+    uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@main
     with:
       environment: dev
 
+  integration-tests-stage:
+    name: Run Integration Tests STAGE
+    uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@main
+    with:
+      environment: stage
+
   integration-tests-prod:
     name: Run Integration Tests PROD
-    if: github.ref == 'refs/heads/main'
     uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_generic.yml@main
     with:
       environment: prod
