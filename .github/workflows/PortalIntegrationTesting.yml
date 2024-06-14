@@ -1,0 +1,23 @@
+name: Portal Integration Testing
+on:
+  push:
+    branches:
+      - main
+      - AM-1
+    
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+  integration-tests-dev:
+    if: github.ref != 'refs/heads/main'
+    uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_dev.yml@AM-1
+    with:
+      environment: dev
+
+  integration-tests-prod:
+    if: github.ref == 'refs/heads/main'
+    uses: alcantar28/GHAReusableWorkflows/.github/workflows/integration_testing_dev.yml@main
+    with:
+      environment: prod
